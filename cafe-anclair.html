@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café An'Clair — Downtown Bellevue</title>
+<meta name="description" content="Artisanal coffee & French-inspired pastries with Korean flair. Located in Skyline Tower, Downtown Bellevue.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FAF7F2;
+  --cream-dark: #F0EBE3;
+  --warm-white: #FFFDF9;
+  --espresso: #2C1810;
+  --espresso-light: #4A3228;
+  --champagne: #C9A96E;
+  --champagne-light: #D4BA88;
+  --champagne-muted: #B89B5E;
+  --stone: #8A7E74;
+  --stone-light: #A99E94;
+  --latte: #D4C5B2;
+  --shadow: rgba(44, 24, 16, 0.08);
+  --shadow-deep: rgba(44, 24, 16, 0.15);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--espresso);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── SCROLL REVEAL SYSTEM ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── NAVIGATION ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.25rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.5s ease, padding 0.4s ease, box-shadow 0.4s ease;
+}
+
+nav.scrolled {
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.8rem 3rem;
+  box-shadow: 0 1px 30px var(--shadow);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--espresso);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.nav-logo span {
+  color: var(--champagne);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--espresso-light);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--champagne);
+  transition: width 0.4s var(--ease-out-expo);
+}
+
+.nav-links a:hover {
+  color: var(--champagne-muted);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--espresso);
+  transition: all 0.3s ease;
+}
+
+/* ─── HERO SECTION ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--warm-white);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(201, 169, 110, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(212, 197, 178, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(201, 169, 110, 0.05) 0%, transparent 40%);
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 2rem;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-out-expo) 0.3s forwards;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--espresso);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: heroFadeUp 1.2s var(--ease-out-expo) 0.5s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--champagne-muted);
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 300;
+  color: var(--stone);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  opacity: 0;
+  animation: heroFadeUp 1.2s var(--ease-out-expo) 0.7s forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border: 1px solid var(--champagne);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+  opacity: 0;
+  animation: heroFadeUp 1.2s var(--ease-out-expo) 0.9s forwards;
+}
+
+.hero-cta:hover {
+  background: var(--champagne);
+  color: var(--warm-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 169, 110, 0.25);
+}
+
+.hero-cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+.hero-cta:hover svg {
+  transform: translateX(3px);
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-out-expo) 1.2s forwards;
+}
+
+.hero-scroll-indicator span {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: var(--latte);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--champagne);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0% { top: -100%; }
+  50% { top: 100%; }
+  100% { top: 100%; }
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── HORIZONTAL DIVIDER ─── */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 3rem 0;
+}
+
+.divider-line {
+  width: 60px;
+  height: 1px;
+  background: var(--latte);
+}
+
+.divider-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--champagne);
+  transform: rotate(45deg);
+}
+
+/* ─── ABOUT SECTION ─── */
+.about {
+  padding: 8rem 3rem;
+  background: var(--cream);
+  position: relative;
+}
+
+.about-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.about-image-frame {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.about-image-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--champagne);
+  transform: translate(12px, 12px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--stone-light);
+  font-style: italic;
+  position: relative;
+}
+
+/* Decorative placeholder for image */
+.about-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg, var(--cream-dark) 0%, var(--latte) 50%, var(--cream-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.about-image-placeholder svg {
+  width: 48px;
+  height: 48px;
+  color: var(--stone-light);
+  opacity: 0.5;
+}
+
+.about-image-placeholder span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--stone-light);
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  color: var(--espresso);
+}
+
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.about-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--stone);
+  margin-bottom: 1.5rem;
+}
+
+.about-signature {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--champagne);
+  margin-top: 2rem;
+}
+
+/* ─── MARQUEE BANNER ─── */
+.marquee-section {
+  overflow: hidden;
+  background: var(--espresso);
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.marquee-item {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--champagne);
+  white-space: nowrap;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.marquee-item::after {
+  content: '◆';
+  font-size: 0.4rem;
+  opacity: 0.5;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─── MENU SECTION ─── */
+.menu {
+  padding: 8rem 3rem;
+  background: var(--warm-white);
+}
+
+.menu-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 4rem;
+  text-align: left;
+}
+
+.menu-category {
+  padding: 2.5rem;
+  background: var(--cream);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  transition: all 0.5s var(--ease-out-expo);
+}
+
+.menu-category:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px var(--shadow);
+  border-color: var(--champagne);
+}
+
+.menu-category-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 0.5rem;
+}
+
+.menu-category-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(212, 197, 178, 0.3);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-name {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--espresso-light);
+}
+
+.menu-item-price {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--champagne-muted);
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.menu-item-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--latte);
+  margin: 0 0.75rem;
+  min-width: 20px;
+  align-self: end;
+  margin-bottom: 4px;
+}
+
+.menu-note {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--stone-light);
+  margin-top: 3rem;
+}
+
+/* ─── SIGNATURE DRINKS HIGHLIGHT ─── */
+.signatures {
+  padding: 6rem 3rem;
+  background: var(--espresso);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.signatures::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(201, 169, 110, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(201, 169, 110, 0.05) 0%, transparent 40%);
+}
+
+.signatures-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.signatures .section-label {
+  color: var(--champagne);
+}
+
+.signatures .section-title {
+  color: var(--cream);
+}
+
+.sig-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.sig-card {
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  text-align: center;
+  transition: all 0.5s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.sig-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 169, 110, 0.05) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.sig-card:hover::before {
+  opacity: 1;
+}
+
+.sig-card:hover {
+  border-color: var(--champagne);
+  transform: translateY(-4px);
+}
+
+.sig-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.sig-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--champagne);
+  margin-bottom: 0.75rem;
+}
+
+.sig-desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--stone-light);
+  line-height: 1.6;
+}
+
+/* ─── REVIEWS SECTION ─── */
+.reviews {
+  padding: 8rem 3rem;
+  background: var(--cream);
+}
+
+.reviews-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.review-card {
+  padding: 2.5rem 2rem;
+  background: var(--warm-white);
+  border: 1px solid rgba(212, 197, 178, 0.3);
+  text-align: left;
+  transition: all 0.5s var(--ease-out-expo);
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px var(--shadow);
+}
+
+.review-stars {
+  color: var(--champagne);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 1.25rem;
+}
+
+.review-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--espresso-light);
+  margin-bottom: 1.25rem;
+}
+
+.review-author {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+}
+
+.review-source {
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--latte);
+  margin-top: 0.25rem;
+}
+
+.reviews-rating-summary {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.rating-badge {
+  text-align: center;
+}
+
+.rating-badge-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--champagne);
+}
+
+.rating-badge-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+  margin-top: 0.25rem;
+}
+
+/* ─── LOCATIONS SECTION ─── */
+.locations {
+  padding: 8rem 3rem;
+  background: var(--warm-white);
+}
+
+.locations-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 4rem;
+  text-align: left;
+}
+
+.location-map {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border: 0;
+  filter: grayscale(0.3) contrast(1.05);
+  background: var(--cream-dark);
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.location-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 0.5rem;
+}
+
+.location-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  border: 1px solid var(--champagne);
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 2rem;
+  width: fit-content;
+}
+
+.location-info-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(212, 197, 178, 0.3);
+}
+
+.location-info-item:last-child {
+  border-bottom: none;
+}
+
+.location-info-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--champagne);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.location-info-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+  margin-bottom: 0.35rem;
+  font-weight: 400;
+}
+
+.location-info-value {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--espresso-light);
+  line-height: 1.6;
+}
+
+.other-locations {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(212, 197, 178, 0.3);
+}
+
+.other-locations-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--stone);
+  margin-bottom: 1.5rem;
+}
+
+.other-locations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.other-loc {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--espresso-light);
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--latte);
+  transition: all 0.3s ease;
+}
+
+.other-loc:hover {
+  border-color: var(--champagne);
+  color: var(--champagne-muted);
+}
+
+/* ─── FOOTER / CONTACT ─── */
+footer {
+  background: var(--espresso);
+  color: var(--cream);
+  padding: 6rem 3rem 3rem;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: var(--champagne);
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1.25rem;
+}
+
+.footer-brand span {
+  color: var(--champagne);
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--stone);
+  line-height: 1.7;
+  max-width: 350px;
+}
+
+.footer-col-title {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-bottom: 1.5rem;
+}
+
+.footer-col a,
+.footer-col p {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--stone);
+  text-decoration: none;
+  line-height: 1.7;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--champagne);
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 169, 110, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copyright {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--stone);
+  letter-spacing: 0.05em;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-socials a {
+  color: var(--stone);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.footer-socials a:hover {
+  color: var(--champagne);
+}
+
+/* ─── MOBILE RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  nav.scrolled { padding: 0.8rem 1.5rem; }
+
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--cream);
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    z-index: 999;
+  }
+
+  .nav-links.open a {
+    font-size: 1rem;
+  }
+
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-image-frame {
+    max-height: 400px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sig-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-rating-summary {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .about, .menu, .signatures, .reviews, .locations {
+    padding: 5rem 1.5rem;
+  }
+}
+
+/* ─── PARALLAX LIGHT EFFECT ─── */
+.parallax-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+.hero .parallax-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(201, 169, 110, 0.07);
+  top: 10%;
+  left: -5%;
+}
+
+.hero .parallax-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(212, 197, 178, 0.08);
+  bottom: 10%;
+  right: -5%;
+}
+
+/* ─── COUNTER ANIMATION ─── */
+.count-up {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Café An<span>'</span>Clair</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#signatures">Signatures</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#locations">Visit</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="parallax-orb parallax-orb-1" data-speed="0.03"></div>
+  <div class="parallax-orb parallax-orb-2" data-speed="-0.02"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Skyline Tower · Downtown Bellevue</p>
+    <h1 class="hero-title">Café <em>An'Clair</em></h1>
+    <p class="hero-subtitle">Artisanal coffee & French-inspired pastries<br>with a touch of Korean soul</p>
+    <a href="#menu" class="hero-cta">
+      Explore the Menu
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-image-frame reveal-left">
+      <div class="about-image-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Café interior photo</span>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">Born from a <em>sisterly bond</em><br>& a shared dream</h2>
+      <p class="about-text">
+        Sisters Ann and Claire grew up on Mercer Island imagining conventional careers — desk jobs, eight-hour days. But when they discovered that life wasn't for them, an unexpected spark changed everything. Their parents casually mentioned a coffee shop, and a new dream took root.
+      </p>
+      <p class="about-text">
+        Ann found her joy in the kitchen. Claire became an artisanal coffee connoisseur. Through this complementary pairing, Café An'Clair was born in 2018 — combining their names to create a space uniquely their own. Now with three locations and a loyal community, they blend craft, Korean heritage, and genuine human connection in every cup.
+      </p>
+      <p class="about-signature">— Ann & Claire</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Cloud Cold Brew</span>
+    <span class="marquee-item">Yuzu Financier</span>
+    <span class="marquee-item">Spanish Latte</span>
+    <span class="marquee-item">Bulgogi Sandwich</span>
+    <span class="marquee-item">Blueberry Scone</span>
+    <span class="marquee-item">Avocado Toast</span>
+    <span class="marquee-item">Einspanner</span>
+    <span class="marquee-item">Honey Financier</span>
+    <span class="marquee-item">Ice Cream Latte</span>
+    <span class="marquee-item">Chocolate Scone</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Cloud Cold Brew</span>
+    <span class="marquee-item">Yuzu Financier</span>
+    <span class="marquee-item">Spanish Latte</span>
+    <span class="marquee-item">Bulgogi Sandwich</span>
+    <span class="marquee-item">Blueberry Scone</span>
+    <span class="marquee-item">Avocado Toast</span>
+    <span class="marquee-item">Einspanner</span>
+    <span class="marquee-item">Honey Financier</span>
+    <span class="marquee-item">Ice Cream Latte</span>
+    <span class="marquee-item">Chocolate Scone</span>
+  </div>
+</div>
+
+<!-- ═══════════ MENU ═══════════ -->
+<section class="menu" id="menu">
+  <div class="menu-inner">
+    <p class="section-label reveal">The Menu</p>
+    <h2 class="section-title reveal reveal-delay-1">Crafted with <em>care</em>,<br>served with heart</h2>
+
+    <div class="menu-grid">
+      <!-- Coffee -->
+      <div class="menu-category reveal reveal-delay-2">
+        <h3 class="menu-category-title">Coffee & Drinks</h3>
+        <p class="menu-category-sub">Locally roasted · Handcrafted</p>
+        <div class="menu-item">
+          <span class="menu-item-name">Espresso</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$4.50</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Americano</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$5.40</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Drip Coffee</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$4.20</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Café Au Lait</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$4.80</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Latte (16 oz)</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$7.20</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Cappuccino</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$6.60</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Mocha</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$7.20</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Spanish Latte ✦</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$7.80</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Cloud Cold Brew ✦</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$7.80</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Einspanner</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$7.20</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Ice Cream Latte</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$8.40</span>
+        </div>
+      </div>
+
+      <!-- Pastries -->
+      <div class="menu-category reveal reveal-delay-3">
+        <h3 class="menu-category-title">Pastries & Baked Goods</h3>
+        <p class="menu-category-sub">Baked fresh daily</p>
+        <div class="menu-item">
+          <span class="menu-item-name">Blueberry Scone</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$6.30</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Chocolate Scone</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$6.30</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Honey Financier</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$5.40</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Yuzu Financier</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$5.40</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Clair</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$6.00</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Box of 9 Pastries</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$27.00</span>
+        </div>
+      </div>
+
+      <!-- Sandwiches -->
+      <div class="menu-category reveal reveal-delay-2">
+        <h3 class="menu-category-title">Sandwiches & Toasts</h3>
+        <p class="menu-category-sub">Breakfast & lunch</p>
+        <div class="menu-item">
+          <span class="menu-item-name">Bacon, Egg & Cheese</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$9.30</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Egg & Cheese</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$8.40</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Bulgogi Sandwich</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$18.00</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Turkey Sandwich</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$18.00</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Chicken Sandwich</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$18.00</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Prosciutto Sandwich</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$18.00</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Avocado Toast</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$14.00</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Bulgogi Toast</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$16.00</span>
+        </div>
+      </div>
+
+      <!-- Salads -->
+      <div class="menu-category reveal reveal-delay-3">
+        <h3 class="menu-category-title">Bowls & More</h3>
+        <p class="menu-category-sub">Fresh & wholesome</p>
+        <div class="menu-item">
+          <span class="menu-item-name">Kale Salad</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$14.00</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-item-name">Brioche</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">$6.00</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="menu-note reveal reveal-delay-4">✦ Signature items · Prices may vary · Menu items baked fresh and subject to availability</p>
+  </div>
+</section>
+
+<!-- ═══════════ SIGNATURE DRINKS ═══════════ -->
+<section class="signatures" id="signatures">
+  <div class="signatures-inner">
+    <p class="section-label reveal">Signature Creations</p>
+    <h2 class="section-title reveal reveal-delay-1">The ones they<br><em>come back for</em></h2>
+
+    <div class="sig-cards">
+      <div class="sig-card reveal reveal-delay-2">
+        <span class="sig-icon">☁️</span>
+        <h3 class="sig-name">Cloud Cold Brew</h3>
+        <p class="sig-desc">A velvety cold brew topped with a dreamy cloud of house-made cream — light, airy, and impossibly smooth.</p>
+      </div>
+      <div class="sig-card reveal reveal-delay-3">
+        <span class="sig-icon">✦</span>
+        <h3 class="sig-name">Spanish Latte</h3>
+        <p class="sig-desc">Rich espresso meets sweetened condensed milk for a bold, indulgent latte with European warmth.</p>
+      </div>
+      <div class="sig-card reveal reveal-delay-4">
+        <span class="sig-icon">🍋</span>
+        <h3 class="sig-name">Yuzu Financier</h3>
+        <p class="sig-desc">A French-Korean crossover — the classic almond cake infused with bright, fragrant yuzu citrus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ REVIEWS ═══════════ -->
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <p class="section-label reveal">What People Say</p>
+    <h2 class="section-title reveal reveal-delay-1">Loved by <em>Bellevue</em></h2>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The shop is super cute and chic. I got a matcha latte and my sister got a hot chocolate — both are very good. An was so nice and she gave us free pastries too."</p>
+        <p class="review-author">Happy Customer</p>
+        <p class="review-source">Google Reviews</p>
+      </div>
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The yuzu financier and chocolate scone are standouts. Try the ice cream latte for a refreshing twist. Perfect spot for a casual meetup or indulgent coffee break."</p>
+        <p class="review-author">Local Regular</p>
+        <p class="review-source">Corner</p>
+      </div>
+      <div class="review-card reveal reveal-delay-4">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"A great spot for chai in the city! They have a good, spicy chai and good espresso. The space is bright, with good music, and plenty of seating."</p>
+        <p class="review-author">Coffee Enthusiast</p>
+        <p class="review-source">Yelp</p>
+      </div>
+    </div>
+
+    <div class="reviews-rating-summary reveal reveal-delay-3">
+      <div class="rating-badge">
+        <div class="rating-badge-number count-up" data-target="4.7">0</div>
+        <div class="rating-badge-label">Google Rating</div>
+      </div>
+      <div class="rating-badge">
+        <div class="rating-badge-number count-up" data-target="723">0</div>
+        <div class="rating-badge-label">Reviews</div>
+      </div>
+      <div class="rating-badge">
+        <div class="rating-badge-number count-up" data-target="4.8">0</div>
+        <div class="rating-badge-label">DoorDash</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LOCATION ═══════════ -->
+<section class="locations" id="locations">
+  <div class="locations-inner">
+    <p class="section-label reveal">Find Us</p>
+    <h2 class="section-title reveal reveal-delay-1">Downtown <em>Bellevue</em></h2>
+
+    <div class="locations-grid">
+      <div class="reveal-left">
+        <iframe
+          class="location-map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2690.5!2d-122.2025!3d47.6155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDM2JzU2LjAiTiAxMjLCsDEyJzA5LjAiVw!5e0!3m2!1sen!2sus!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Cafe An'Clair Downtown Bellevue Location">
+        </iframe>
+      </div>
+      <div class="location-details reveal-right">
+        <h3 class="location-name">Skyline Tower</h3>
+        <div class="location-badge">Newest Location</div>
+
+        <div class="location-info-item">
+          <svg class="location-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <p class="location-info-label">Address</p>
+            <p class="location-info-value">10900 NE 4th St, Suite 260<br>Bellevue, WA 98004</p>
+          </div>
+        </div>
+
+        <div class="location-info-item">
+          <svg class="location-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div>
+            <p class="location-info-label">Hours</p>
+            <p class="location-info-value">Monday – Friday: 7:30 AM – 2:00 PM<br>Saturday & Sunday: Closed</p>
+          </div>
+        </div>
+
+        <div class="location-info-item">
+          <svg class="location-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div>
+            <p class="location-info-label">Phone</p>
+            <p class="location-info-value"><a href="tel:+14256981597" style="color: inherit; text-decoration: none;">(425) 698-1597</a></p>
+          </div>
+        </div>
+
+        <div class="location-info-item">
+          <svg class="location-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div>
+            <p class="location-info-label">Email</p>
+            <p class="location-info-value"><a href="mailto:cafeanclair@gmail.com" style="color: inherit; text-decoration: none;">cafeanclair@gmail.com</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="other-locations reveal">
+      <p class="other-locations-title">Also visit us at</p>
+      <div class="other-locations-list">
+        <div class="other-loc">826 Thomas St — South Lake Union, Seattle</div>
+        <div class="other-loc">501 Fairview Ave N — Fairview, Seattle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Café An<span>'</span>Clair</div>
+      <p class="footer-tagline">French-inspired pastries & artisanal coffee, crafted by sisters Ann and Claire. Three locations across Seattle and Bellevue.</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Quick Links</p>
+      <a href="#about">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#signatures">Signatures</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#locations">Locations</a>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Connect</p>
+      <a href="https://www.instagram.com/cafeanclair/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/p/Cafe-AnClair-100063692105408/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@cafeanclair" target="_blank" rel="noopener">TikTok</a>
+      <a href="mailto:cafeanclair@gmail.com">Email Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copyright">© 2026 Café An'Clair. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/cafeanclair/" target="_blank" rel="noopener">IG</a>
+      <a href="https://www.facebook.com/p/Cafe-AnClair-100063692105408/" target="_blank" rel="noopener">FB</a>
+      <a href="https://www.tiktok.com/@cafeanclair" target="_blank" rel="noopener">TT</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── SCROLL REVEAL ───
+const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+  observer.observe(el);
+});
+
+// ─── NAV SCROLL EFFECT ───
+const navbar = document.getElementById('navbar');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (scrollY > 60) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  lastScroll = scrollY;
+});
+
+// ─── MOBILE NAV ───
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// ─── PARALLAX ORBS ───
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  document.querySelectorAll('.parallax-orb').forEach(orb => {
+    const speed = parseFloat(orb.dataset.speed);
+    orb.style.transform = `translateY(${scrollY * speed}px)`;
+  });
+});
+
+// ─── COUNT-UP ANIMATION ───
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = target % 1 !== 0;
+      const duration = 2000;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        const current = eased * target;
+
+        if (isDecimal) {
+          el.textContent = current.toFixed(1);
+        } else {
+          el.textContent = Math.round(current).toLocaleString();
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      }
+
+      requestAnimationFrame(tick);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+// ─── SMOOTH ANCHOR SCROLLING ───
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
